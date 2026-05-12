@@ -39,6 +39,17 @@ button:hover { background: #ff4f73; }
   border-radius: 4px;
   min-height: 2rem;
 }
+li button {
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+}
+.edit-btn { background: #6ba3ff; }
+.edit-btn:hover { background: #4f8aff; }
+.delete-btn { background: #999; }
+.delete-btn:hover { background: #777; }
+
 ul { list-style: none; padding: 0; }
 li {
   padding: 0.5rem;

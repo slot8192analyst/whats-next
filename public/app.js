@@ -1,6 +1,5 @@
 const API = '/api/cards';
 
-// 一覧を取得して表示
 async function loadCards() {
   const res = await fetch(API);
   const cards = await res.json();
@@ -8,8 +7,41 @@ async function loadCards() {
   list.innerHTML = '';
   cards.forEach(card => {
     const li = document.createElement('li');
-    li.innerHTML = `<strong>${card.title}</strong><br>${card.description || ''}`;
+    li.innerHTML = `
+      <strong>${card.title}</strong><br>
+      <span>${card.description || ''}</span><br>
+      <button class="edit-btn" data-id="${card.id}">編集</button>
+      <button class="delete-btn" data-id="${card.id}">削除</button>
+    `;
     list.appendChild(li);
+  });
+
+  // 削除ボタン
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('本当に削除しますか？')) return;
+      const id = btn.dataset.id;
+      await fetch(`${API}/${id}`, { method: 'DELETE' });
+      loadCards();
+    });
+  });
+
+  // 編集ボタン
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.id;
+      const card = cards.find(c => c.id == id);
+      const newTitle = prompt('新しいタイトル', card.title);
+      if (newTitle === null) return; // キャンセル
+      const newDesc = prompt('新しい説明', card.description || '');
+      if (newDesc === null) return;
+      await fetch(`${API}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: newTitle, description: newDesc })
+      });
+      loadCards();
+    });
   });
 }
 
