@@ -1,8 +1,15 @@
 export async function onRequestDelete({ params, env }) {
   const { id } = params;
+
+  // 関連する履歴を先に削除
+  await env.DB.prepare('DELETE FROM visits WHERE card_id = ?').bind(id).run();
+
+  // それからカード本体を削除
   await env.DB.prepare('DELETE FROM cards WHERE id = ?').bind(id).run();
+
   return Response.json({ ok: true });
 }
+
 
 export async function onRequestPut({ params, request, env }) {
   const { id } = params;
