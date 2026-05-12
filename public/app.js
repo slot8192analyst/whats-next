@@ -7,11 +7,10 @@ let visitsCache = [];
 // ---------- 画像選択肢（追加フォームと編集モーダルで共通） ----------
 const IMAGE_OPTIONS = [
   { value: '', label: '画像なし' },
-  { value: 'aquarium.jpg', label: '水族館' },
-  { value: 'cafe.jpg', label: 'カフェ' },
-  { value: 'park.jpg', label: '公園' },
-  // 画像を追加するときはここに1行足すだけでOK
+  { value: 'cafe.png', label: 'カフェ' },
+  { value: 'shopping.png', label: 'ショッピング' },
 ];
+
 
 function populateImageSelect(selectId) {
   const select = document.getElementById(selectId);
