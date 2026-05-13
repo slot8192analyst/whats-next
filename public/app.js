@@ -10,7 +10,7 @@ const IMAGE_OPTIONS = [
   { value: '', label: '画像なし' },
   { value: 'cafe.png', label: 'カフェ' },
   { value: 'shopping.png', label: 'ショッピング' },
-  { value: 'hamburger.png', label: 'ハンバーガー' },
+  { value: 'wapper.jpg', label: 'ハンバーガー' },
 ];
 
 // ---------- ユーティリティ ----------
