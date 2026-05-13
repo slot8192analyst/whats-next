@@ -268,7 +268,10 @@ function renderDetailContent(card) {
     const updated = cardsCache.find(c => c.id == card.id);
     if (updated) renderDetailContent(updated);
   });
-  document.getElementById('detail-edit-btn').addEventListener('click', () => openEditModal(card.id));
+  document.getElementById('detail-edit-btn').addEventListener('click', () => {
+    closeDetailModal();
+    openEditModal(card.id);
+  });
   document.getElementById('detail-delete-btn').addEventListener('click', () => deleteCard(card.id));
   container.querySelectorAll('.detail-visit-delete').forEach(btn => {
     btn.addEventListener('click', async () => {
